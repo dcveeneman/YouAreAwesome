@@ -42,7 +42,6 @@ struct ContentView: View {
                 messageString = (messageString == message1 ? message2 : message1)
                 
                 imageName = "image\(imageNumber)"
-                print(imageName)
                 imageNumber = imageNumber + 1
                 if(imageNumber > 9) {
                     imageNumber = 0
