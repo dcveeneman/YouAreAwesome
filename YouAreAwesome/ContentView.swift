@@ -9,12 +9,21 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var messageString = ""
-
+    @State private var imageName = ""
+    @State private var imageNumber = 0
+    
     var body: some View {
         VStack {
+            
             Spacer()
-                      
-           Text(messageString)
+            
+            Image(imageName)
+                .resizable()
+                .scaledToFit()
+            
+            Spacer()
+            
+            Text(messageString)
                 .font(.largeTitle)
                 .fontWeight(.heavy)
                 .minimumScaleFactor(0.5)
@@ -26,23 +35,23 @@ struct ContentView: View {
             
             Spacer()
             
-            HStack {
-                Button("Awesome") {
-                    // This is the action performed when the button is pressed
-                    messageString = "You Are Awesome!"
+            Button("Show Message") {
+                let message1 = "You Are Awesome!"
+                let message2 = "You Are Great!"
+                
+                messageString = (messageString == message1 ? message2 : message1)
+                
+                imageName = "image\(imageNumber)"
+                print(imageName)
+                imageNumber = imageNumber + 1
+                if(imageNumber > 9) {
+                    imageNumber = 0
                 }
-                .buttonStyle(.borderedProminent)
-                
-                Spacer()
-                
-                Button("Great") {
-                    messageString = "You Are Great!"
-                }
-                .buttonStyle(.borderedProminent)
-                
             }
-            .padding()
+            .buttonStyle(.borderedProminent)
         }
+        .padding()
+        
     }
 }
 
