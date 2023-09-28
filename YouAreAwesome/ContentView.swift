@@ -38,8 +38,17 @@ struct ContentView: View {
             Button("Show Message") {
                 let message1 = "You Are Awesome!"
                 let message2 = "You Are Great!"
+                let message3 = "Fabulous? That's You!"
                 
-                messageString = (messageString == message1 ? message2 : message1)
+                if messageString == message1 {
+                    messageString = message2
+                } else if messageString == message2 {
+                    messageString = message3
+                } else {
+                    messageString = message1
+                }
+                
+//                messageString = (messageString == message1 ? message2 : message1)
                 
                 imageName = "image\(imageNumber)"
                 imageNumber = imageNumber + 1
