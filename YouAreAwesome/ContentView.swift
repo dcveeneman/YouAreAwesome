@@ -15,15 +15,7 @@ struct ContentView: View {
 
     var body: some View {
         VStack {
-            
-            Spacer()
-            
-            Image(imageName)
-                .resizable()
-                .scaledToFit()
-            
-            Spacer()
-            
+                        
             Text(messageString)
                 .font(.largeTitle)
                 .fontWeight(.heavy)
@@ -33,6 +25,10 @@ struct ContentView: View {
                 .frame(height: 150)
                 .frame(maxWidth: .infinity)
                 .padding()
+
+            Image(imageName)
+                .resizable()
+                .scaledToFit()
             
             Spacer()
             
