@@ -49,17 +49,17 @@ struct ContentView: View {
                 // Set messageString to messages[messageNumber]
                 // Update lastMessageNumber with new messageNumber
                 
-                var messageNumber = Int.random(in: 0...messages.count - 1)
-                while messageNumber == lastMessageNumber {
+                var messageNumber: Int
+                repeat {
                     messageNumber = Int.random(in: 0...messages.count - 1)
-                }
+                } while messageNumber == lastMessageNumber
                 messageString = messages[messageNumber]
                 lastMessageNumber = messageNumber
                 
-                var imageNumber = Int.random(in: 0...9)
-                while imageNumber == lastImageNumber {
+                var imageNumber: Int
+                repeat {
                     imageNumber = Int.random(in: 0...9)
-                }
+                } while imageNumber == lastImageNumber
                 imageName = "image\(imageNumber)"
                 lastImageNumber = imageNumber
             }
