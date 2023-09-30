@@ -37,7 +37,6 @@ struct ContentView: View {
             Spacer()
             
             Button("Show Message") {
-                var newMessageNumber = -1
                 let messages = ["You Are Awesome!",
                                 "You Are Great!",
                                 "You Are Fantastic!",
