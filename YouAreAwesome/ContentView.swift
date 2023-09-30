@@ -12,10 +12,11 @@ struct ContentView: View {
     @State private var imageName = ""
     @State private var imageNumber = 0
     @State private var messageNumber = 0
-
+    
     var body: some View {
+        
         VStack {
-                        
+            
             Text(messageString)
                 .font(.largeTitle)
                 .fontWeight(.heavy)
@@ -25,7 +26,7 @@ struct ContentView: View {
                 .frame(height: 150)
                 .frame(maxWidth: .infinity)
                 .padding()
-
+            
             Image(imageName)
                 .resizable()
                 .scaledToFit()
@@ -33,15 +34,29 @@ struct ContentView: View {
             Spacer()
             
             Button("Show Message") {
+                // Select new message, different from the last
+                let lastMessage = 0
+                let currentMessage = 0
                 let messages = ["You Are Awesome!",
-                               "You Are Great!",
-                               "Fabulous? That's You!",
-                               "You Are Fantastic!"]
-                
-                let m = Int.random(in: 0...(messages.count - 1))
-                messageString = (messages[m])
+                                "You Are Great!",
+                                "Fabulous? That's You!",
+                                "You Are Fantastic!"]
+                while currentMessage == lastMessage {
+                    lastMessage = currentMessage
+                    currentMessage = Int.random(in: 0...3)
+                }
+                messageString = (messages[currentMessage]) // Triggers UI update
+
+                // Select new image, different from the last
+                let lastImage = 0
+                let currentImage = 0
+                while currentImage == lastImage {
+                    lastImage = currentImage
+                    currentImage = Int.random(in: 1...9)
+                }
+                imageName = "image\(currentImage)" // Triggers UI update
+
                 let i = Int.random(in: 0...9)
-                imageName = "image\(i)"
             }
             .buttonStyle(.borderedProminent)
         }
