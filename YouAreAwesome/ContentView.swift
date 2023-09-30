@@ -35,8 +35,8 @@ struct ContentView: View {
             
             Button("Show Message") {
                 // Select new message, different from the last
-                let lastMessage = 0
-                let currentMessage = 0
+                var lastMessage = 0
+                var currentMessage = 0
                 let messages = ["You Are Awesome!",
                                 "You Are Great!",
                                 "Fabulous? That's You!",
@@ -48,8 +48,8 @@ struct ContentView: View {
                 messageString = (messages[currentMessage]) // Triggers UI update
 
                 // Select new image, different from the last
-                let lastImage = 0
-                let currentImage = 0
+                var lastImage = 0
+                var currentImage = 0
                 while currentImage == lastImage {
                     lastImage = currentImage
                     currentImage = Int.random(in: 1...9)
