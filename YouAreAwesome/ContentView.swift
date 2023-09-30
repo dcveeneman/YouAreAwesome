@@ -10,13 +10,15 @@ import SwiftUI
 struct ContentView: View {
     @State private var messageString = ""
     @State private var imageName = ""
-    @State private var imageNumber = 0
-    @State private var messageNumber = 0
-    
-    var body: some View {
+    @State private var lastMessageNumber = 0
+    @State private var currentMessageNumber = 0
+    @State private var lastImageNumber = 0
+    @State private var currentImageNumber = 0
+
+     var body: some View {
         
         VStack {
-            
+            // Declare Text view
             Text(messageString)
                 .font(.largeTitle)
                 .fontWeight(.heavy)
@@ -27,36 +29,40 @@ struct ContentView: View {
                 .frame(maxWidth: .infinity)
                 .padding()
             
+            //Declare Image view
             Image(imageName)
                 .resizable()
                 .scaledToFit()
             
             Spacer()
             
+            //Declare Button view
             Button("Show Message") {
-                // Select new message, different from the last
-                var lastMessage = 0
-                var currentMessage = 0
+                
                 let messages = ["You Are Awesome!",
                                 "You Are Great!",
                                 "Fabulous? That's You!",
                                 "You Are Fantastic!"]
-                while currentMessage == lastMessage {
-                    lastMessage = currentMessage
-                    currentMessage = Int.random(in: 0...3)
-                }
-                messageString = (messages[currentMessage]) // Triggers UI update
 
+                // Select new message, different from the last
+                while currentMessageNumber == lastMessageNumber {
+                    currentMessageNumber = Int.random(in: 0...3)
+                }
+                lastMessageNumber = currentMessageNumber
+                
+                
+                messageString = (messages[currentMessageNumber]) // Triggers UI update
+                
                 // Select new image, different from the last
-                var lastImage = 0
-                var currentImage = 0
-                while currentImage == lastImage {
-                    lastImage = currentImage
-                    currentImage = Int.random(in: 1...9)
+                while currentImageNumber == lastImageNumber {
+                    currentImageNumber = Int.random(in: 1...9)
+                    print("Last image number: \(lastImageNumber); Current image number: \(currentImageNumber)")
                 }
-                imageName = "image\(currentImage)" // Triggers UI update
+                lastImageNumber = currentImageNumber
 
-                let i = Int.random(in: 0...9)
+                print("***")
+
+                imageName = "image\(currentImageNumber)" // Triggers UI update
             }
             .buttonStyle(.borderedProminent)
         }
