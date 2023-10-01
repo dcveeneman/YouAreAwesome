@@ -6,12 +6,15 @@
 //
 
 import SwiftUI
+import AVFAudio
 
 struct ContentView: View {
     @State private var messageString = ""
     @State private var imageName = ""
     @State private var lastMessageNumber = -1
     @State private var lastImageNumber = -1
+    @State private var lastSoundNumber = -1
+    @State private var audioPlayer: AVAudioPlayer!
     
     var body: some View {
         
@@ -42,13 +45,6 @@ struct ContentView: View {
                                 "You Are Fantastic!",
                                 "Fabulous? That's You!"]
                 
-                // Generate a random message number to use as an index
-                // If messageNumber == lastMessageNumber {
-                //     Keep generating a new random messageNumber
-                //     until new messageNumber ! lastMessageNumber}
-                // Set messageString to messages[messageNumber]
-                // Update lastMessageNumber with new messageNumber
-                
                 var messageNumber: Int
                 repeat {
                     messageNumber = Int.random(in: 0...messages.count - 1)
@@ -62,6 +58,25 @@ struct ContentView: View {
                 } while imageNumber == lastImageNumber
                 imageName = "image\(imageNumber)"
                 lastImageNumber = imageNumber
+                
+                var soundNumber: Int
+                repeat {
+                    soundNumber = Int.random(in: 0...5)
+                } while soundNumber == lastSoundNumber
+                let soundName = "sound\(soundNumber)"
+                lastSoundNumber = soundNumber
+
+                guard let soundFile = NSDataAsset(name: soundName) else {
+                    print("❌ Could not read sound file named \(soundName)")
+                    return
+                }
+                
+                do {
+                    audioPlayer = try AVAudioPlayer(data: soundFile.data)
+                    audioPlayer.play()
+                } catch {
+                    print("❌ ERROR: \(error.localizedDescription)")
+                }
             }
             .buttonStyle(.borderedProminent)
         }
