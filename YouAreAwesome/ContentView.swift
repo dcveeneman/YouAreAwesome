@@ -72,7 +72,7 @@ struct ContentView: View {
 
     func playSound(soundName: String) {
         guard let soundFile = NSDataAsset(name: soundName) else {
-            print("❌ Could not read sound file named \(soundName)")
+            print("􀀳 Could not read sound file named \(soundName)")
             return
         }
         
@@ -80,7 +80,7 @@ struct ContentView: View {
             audioPlayer = try AVAudioPlayer(data: soundFile.data)
             audioPlayer.play()
         } catch {
-            print("❌ ERROR: \(error.localizedDescription) creating audio player.")
+            print("􀀳 ERROR: \(error.localizedDescription) creating audio player.")
         }
     }
 }
