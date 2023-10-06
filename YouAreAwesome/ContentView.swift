@@ -28,6 +28,7 @@ struct ContentView: View {
                 .foregroundColor(.red)
                 .frame(height: 150)
                 .frame(maxWidth: .infinity)
+                .animation(.easeInOut(duration: 0.5), value: imageName)
                 .padding()
             
             Image(imageName)
@@ -35,6 +36,7 @@ struct ContentView: View {
                 .scaledToFit()
                 .cornerRadius(30)
                 .shadow(radius: 30)
+                .animation(.easeInOut(duration: 0.5), value: imageName)
                 .padding()
             
             Spacer()
@@ -43,6 +45,7 @@ struct ContentView: View {
                 
                 Text("Sound On:") //workaround for label quirk in Toggles. See Chapter 1.22 notes
                 Toggle("Sound On", isOn: $soundIsOn)
+                    .tint(.accentColor)
                     .labelsHidden()
                     .onChange(of: soundIsOn) {
                         if audioPlayer != nil && audioPlayer.isPlaying {
